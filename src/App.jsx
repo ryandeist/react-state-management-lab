@@ -52,7 +52,7 @@ const App = () => {
         img: 'https://via.placeholder.com/150/1ee8a4',
       },
       {
-        id: 6, 
+        id: 6,
         name: 'Medic',
         price: 15,
         strength: 5,
@@ -96,17 +96,27 @@ const App = () => {
 
   const handleAddFighter = (hiredSquadFighter, hiredSquadFighterId) => {
     if (money >= hiredSquadFighter.price) {
-    const newSquadFighters = [...squadFighters, hiredSquadFighter];
-    const updatedZombieFighters = zombieFighters.filter(hiredSquadFighter => hiredSquadFighter.id !== hiredSquadFighterId);
-    setSquadFighters(newSquadFighters);
-    setMoney(money - hiredSquadFighter.price);
-    setTotalStrength(totalStrength + hiredSquadFighter.strength);
-    setTotalAgility(totalAgility + hiredSquadFighter.agility);
-    setZombieFighters(updatedZombieFighters);
+      const newSquadFighters = [...squadFighters, hiredSquadFighter];
+      const updatedZombieFighters = zombieFighters.filter(hiredSquadFighter => hiredSquadFighter.id !== hiredSquadFighterId);
+      setSquadFighters(newSquadFighters);
+      setMoney(money - hiredSquadFighter.price);
+      setTotalStrength(totalStrength + hiredSquadFighter.strength);
+      setTotalAgility(totalAgility + hiredSquadFighter.agility);
+      setZombieFighters(updatedZombieFighters);
     } else {
       console.log(`'You don't have enough money to hire a ${hiredSquadFighter.name}!`)
     }
   };
+
+  const handleRemoveFighter = (firedSquadFighter, firedSquadFighterId) => {
+    const newSquadFighters = squadFighters.filter(firedSquadFighter => firedSquadFighter.id !== firedSquadFighterId);
+    setSquadFighters(newSquadFighters);
+    const updatedZombieFighters = [...zombieFighters, firedSquadFighter];
+    setZombieFighters(updatedZombieFighters);
+    setMoney(money + firedSquadFighter.price);
+    setTotalStrength(totalStrength - firedSquadFighter.strength);
+    setTotalAgility(totalAgility - firedSquadFighter.agility);
+  }
 
   // console.log(zombieFighters)
   // console.log(squadFighters)
@@ -116,22 +126,23 @@ const App = () => {
       <h1>Zombie Fighters</h1>
       <h3>Money: ${money}</h3>
       <h3>Team Strength: {totalStrength}</h3>
-      <h3>Team Agility:{totalAgility}</h3>
+      <h3>Team Agility: {totalAgility}</h3>
       <h3>Our Squad:</h3>
       <ul>
-        {squadFighters.map((squadFighter, index) => (
+        {squadFighters.length === 0 ? <p>Hire some fighters!</p> : squadFighters.map((squadFighter) => (
           <SquadFighter
-            key={index}
+            handleRemoveFighter={handleRemoveFighter}
+            key={squadFighter.id}
             squadFighter={squadFighter}
           />
         ))}
       </ul>
       <h3>Fighters for Hire:</h3>
       <ul>
-        {zombieFighters.map((zombieFighter, index) => (
+        {zombieFighters.map((zombieFighter) => (
           <ZombieFighter
             handleAddFighter={handleAddFighter}
-            key={index}
+            key={zombieFighter.id}
             zombieFighter={zombieFighter}
           />
         ))}

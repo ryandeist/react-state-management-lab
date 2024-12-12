@@ -1,4 +1,4 @@
-const SquadFighter = ({ squadFighter }) => {
+const SquadFighter = ({ squadFighter, handleRemoveFighter }) => {
 
     // console.log(squadFighter)
 
@@ -9,7 +9,7 @@ const SquadFighter = ({ squadFighter }) => {
             <p>Price: ${ squadFighter.price }</p>
             <p>Strength: { squadFighter.strength }</p>
             <p>Agility: { squadFighter.agility }</p>
-            <button>Remove</button>
+            <button onClick={() => handleRemoveFighter(squadFighter, squadFighter.id)}>Remove</button>
         </li>
     )
 }
