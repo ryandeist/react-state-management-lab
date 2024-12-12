@@ -83,6 +83,13 @@ const App = () => {
   return (
     <>
       <h1>Zombie Fighters</h1>
+      <h3>Money: ${ money }</h3>
+      <h3>Team Strength:</h3>
+      <h3>Team Agility:</h3>
+      <h3>Our Squad:</h3>
+      <ul>
+        
+      </ul>
       <h3>Fighters for Hire:</h3>
       <ul>
         {zombieFighters.map((zombieFighter, index) => (
