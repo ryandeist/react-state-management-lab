@@ -1,7 +1,5 @@
 const SquadFighter = ({ squadFighter, handleRemoveFighter }) => {
 
-    // console.log(squadFighter)
-
     return (
         <li>
             <img src={ squadFighter.img } />

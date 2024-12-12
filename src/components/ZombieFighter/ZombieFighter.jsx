@@ -1,7 +1,5 @@
 const ZombieFighter = ({ zombieFighter, handleAddFighter }) => {
 
-    // console.log(zombieFighter)
-
     return (
         <li>
             <img src={ zombieFighter.img } />

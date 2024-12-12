@@ -118,9 +118,6 @@ const App = () => {
     setTotalAgility(totalAgility - firedSquadFighter.agility);
   }
 
-  // console.log(zombieFighters)
-  // console.log(squadFighters)
-
   return (
     <>
       <h1>Zombie Fighters</h1>
